@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body style="background: #B9E0FF">
+
+
+<div class="email">
+    <form class="search" action="/register" method="get">
+        <button style="border-radius: 20px; position: relative; margin-top: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Registration
+        </button>
+    </form>
+</div>
+<br>
+
+<div class="email">
+    <form class="search" action="/authorization" method="get">
+        <button style="border-radius: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Sign In!
+        </button>
+    </form>
+</div>
+
+
+
+<div class="container px-6 py-10 mx-auto">
+    <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Welcome to Crypto App</h1>
+
+    {% for apps in app %}
+
+        <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+            <div class="lg:flex">
+                <h1>{{ apps.getName }}</h1>>
+
+                <div class="flex flex-col justify-between py-6 lg:mx-6">
+                    <h2>Price: {{ apps.getPrice }}"</h2>
+
+                    <h2>Change per 24h: {{ apps.getPercentChange24h }}</h2>>
+
+
+                    <span style="" class="text-sm text-gray-500 dark:text-gray-300"></span>
+                </div>
+            </div>
+
+        </div>
+    {% endfor %}
+</div>

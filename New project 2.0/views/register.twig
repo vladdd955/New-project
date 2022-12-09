@@ -1,0 +1,43 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <h1>Registration form</h1>
+    <br>
+    <form action="/register" method="post">
+        <label for="name">Name</label>
+        <label>
+            <input class="border" type="text" name="name"/>
+        </label> <br>
+
+        <label for="email">Email</label>
+        <label>
+            <input class="border" type="email" name="email"/>
+        </label> <br>
+
+        <label for="password">Password</label>
+        <label>
+            <input class="border" type="password" name="password"/>
+        </label> <br>
+
+        <label for="Repeat password">Repeat password</label>
+        <label>
+            <input class="border" type="password" name="rePassword"/>
+        </label>
+
+        <input type="submit" value="Register"/> <br>
+
+        <br>
+
+
+    </form>
+
+    <p>If you have account press Sign In!</p>
+    <br>
+    <div class="email">
+        <form class="search" action="/authorization" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Sign In!
+            </button>
+        </form>
+    </div>
+{% endblock %}
