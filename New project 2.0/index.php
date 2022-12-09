@@ -12,6 +12,7 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $rout
     $rout->addRoute('POST', '/register', [\App\Services\RegisterService::class, "start"]);
     $rout->addRoute('POST', '/authorization', [\App\Controllers\AuthorizationController::class, "checkLogin"]);
     $rout->addRoute('GET', '/userPage', [\App\Controllers\UserPageController::class, "pageStart"]);
+    $rout->addRoute('GET', '/logout', [\App\Logout::class, "Logout"]);
 
 });
 
@@ -60,6 +61,9 @@ switch ($routeInfo[0]) {
 
         break;
 }
+
+
+
 
 
 
