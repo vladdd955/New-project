@@ -1,0 +1,46 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <h1>Welcome to User Page</h1>
+
+    <div style="color: #453C67">
+        Welcome: {{ session.name }}
+        <br>
+        Your email: {{ session.email }}
+        <br>
+        Your id: {{ session.id }}
+    </div>
+
+    <br>
+
+        {% for wallets in wallet %}
+            <h1>Price:   {{ wallets.getPrice }}</h1>
+
+            <h1> Symbol: {{ wallets.getCoinSymbol }} </h1>
+
+     <h1> Amount: {{ wallets.getCoinAmount }} </h1>
+        {% endfor %}
+
+
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/logout" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Logout
+            </button>
+        </form>
+    </div>
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Home
+            </button>
+        </form>
+    </div>
+
+
+{% endblock %}
+
+

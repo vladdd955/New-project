@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body style="background: #B9E0FF">
+
+{% if not session.name %}
+    <div class="email">
+        <form class="search" action="/register" method="get">
+            <button style="border-radius: 20px; position: relative; margin-top: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Registration
+            </button>
+        </form>
+    </div>
+    <br>
+
+    <div class="email">
+        <form class="search" action="/authorization" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Sign In!
+            </button>
+        </form>
+    </div>
+{% endif %}
+{% if session.name %}
+
+    <div style="color: #453C67">
+        Welcome: {{ session.name }}
+        <br>
+        Your email: {{ session.email }}
+        <br>
+        Your id: {{ session.id }}
+    </div>
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/logout" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Logout
+            </button>
+        </form>
+    </div>
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/userPage" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                User page
+            </button>
+        </form>
+    </div>
+
+{% endif %}
+
+{#Button#}
+<form class="max-w-sm mx-auto mt-10 center mx-auto" method="get">
+    <input class="form-input rounded-lg shadow-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+           type="text" name="symbols" value="" placeholder="Search">
+    <button class="bg-blue-500 hover:bg-blue-700 rounded-lg shadow-lg py-2 px-3 text-white font-bold mt-3 focus:outline-none focus:shadow-outline"
+            type="submit">Search
+    </button>
+</form>
+
+
+
+<div class="container px-6 py-10 mx-auto">
+    <h1 class="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">Welcome to Crypto App</h1>
+
+    {% for apps in app %}
+        <table class="table border border-collapse lg:table-auto md:table-fixed" style="margin: 20px">
+            <tr class="table-row" >
+                <td class="table-cell font-semibold">{{ apps.getName }} |</td>
+                <td class="table-cell font-semibold"> {{ apps.getSymbol }} |</td>
+                <td class="table-cell font-semibold">Price:  {{ apps.getPrice | number_format(2) }}$ |</td>
+                <td class="table-cell font-semibold">Change percent: {{ apps.getPercentChange24h | number_format(2) }}% |</td>
+            </tr>
+        </table>
+    {% endfor %}
+
+    {% if session.name %}
+
+        <div class="email" style="margin: 20px;">
+            <form class="search" action="" method="get">
+                <button style="border-radius: 20px;"
+                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Sell
+                </button>
+            </form>
+        </div>
+
+        <div class="email" style="margin: 20px;">
+            <form class="search" action="" method="get">
+                <button style="border-radius: 20px;"
+                        class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                    Buy
+                </button>
+            </form>
+        </div>
+
+    {% endif %}
+
+
+</div>
+
+
+
