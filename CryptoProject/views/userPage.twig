@@ -1,0 +1,83 @@
+{% extends 'layout.twig' %}
+{% block content %}
+    <h1>Welcome to User Page</h1>
+
+    <div style="color: #453C67">
+        Welcome: {{ session.name }}
+        <br>
+        Your email: {{ session.email }}
+        <br>
+        Your id: {{ session.id }}
+        <br>
+        Your balance: {{ walletInfo }} USD $
+    </div>
+
+    <br>
+
+<div class="email" style="margin: 20px;">
+    <form class="search" action="/logout" method="get">
+        <button style="border-radius: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Logout
+        </button>
+    </form>
+</div>
+
+<div class="email" style="margin: 20px;">
+    <form class="search" action="/" method="get">
+        <button style="border-radius: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Home
+        </button>
+    </form>
+</div>
+
+<div class="email" style="margin: 20px;">
+    <form class="search" action="/transfer" method="get">
+        <button style="border-radius: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Transfer
+        </button>
+    </form>
+</div>
+
+<div class="email" style="margin: 20px;">
+    <form class="search" action="/shortPage" method="get">
+        <button style="border-radius: 20px;"
+                class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Short Page
+        </button>
+    </form>
+
+
+<div style="background: #B9E0FF;  border-style: solid;
+  border-width: 1px; " class="bg-white px-8 py-6 rounded-lg shadow-lg text-center ">
+    <h2 class="text-xl font-bold mb-4">Trade History</h2>
+    <table class="table-auto w-full">
+        <thead>
+        <tr>
+            <th class="px-4 py-2">Coin Symbol</th>
+            <th class="px-4 py-2">Coin Amount</th>
+            <th class="px-4 py-2">Coin Price</th>
+            <th class="px-4 py-2">Trade Date</th>
+            <th class="px-4 py-2">Income / Outcome</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for wallets in wallet %}
+        <tr>
+
+            <td class="border px-4 py-2">{{ wallets.getCoinSymbol }}</td>
+            <td class="border px-4 py-2">{{ wallets.getCoinAmount }}</td>
+            <td class="border px-4 py-2">{{ wallets.getPrice }}</td>
+            <td class="border px-4 py-2">{{ wallets.getDate }}</td>
+            <td class="border px-4 py-2">{{ wallets.getMoney}}</td>
+        </tr>
+
+            {% endfor %}
+
+
+
+{% endblock %}
+
+

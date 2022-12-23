@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body style="background: #B9E0FF">
+
+{% if not session.name %}
+    <div class="email">
+        <form class="search" action="/register" method="get">
+            <button style="border-radius: 20px; position: relative; margin-top: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Registration
+            </button>
+        </form>
+    </div>
+    <br>
+
+    <div class="email">
+        <form class="search" action="/authorization" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Sign In!
+            </button>
+        </form>
+    </div>
+{% endif %}
+{% if session.name %}
+
+    <div style="color: #453C67">
+        Welcome: {{ session.name }}
+        <br>
+        Your email: {{ session.email }}
+        <br>
+        Your id: {{ session.id }}
+
+    </div>
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/logout" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Logout
+            </button>
+        </form>
+    </div>
+
+    <div class="email" style="margin: 20px;">
+        <form class="search" action="/userPage" method="get">
+            <button style="border-radius: 20px;"
+                    class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                User page
+            </button>
+        </form>
+    </div>
+
+{% endif %}
+
+
+{% if session.name %}
+
+{% for apps in app %}
+<div class="container px-6 py-10 mx-auto text-center" style="background: #B9E0FF;  border-style: solid;
+  border-width: 1px;">
+    <a href="/tradePage{{ apps.getSymbol }}"  methods="get"
+        <h2 class="text-xl font-bold mb-4">Coin</h2>
+        <table class="table-auto w-full">
+            <thead>
+            <tr>
+                <th class="px-4 py-2">Coin Name</th>
+                <th class="px-4 py-2">Coin Symbol</th>
+                <th class="px-4 py-2">Coin Price</th>
+                <th class="px-4 py-2">Change percent 24h</th>
+            </tr>
+            </thead>
+
+            <tr>
+                <td class="border px-4 py-2">{{ apps.getName }}</td>
+                <td class="border px-4 py-2">{{ apps.getSymbol }}</td>
+                <td class="border px-4 py-2">{{ apps.getPrice | number_format(2) }}$</td>
+                <td class="border px-4 py-2">{{ apps.getPercentChange24h | number_format(2) }}%</td>
+
+
+            </tr>
+            </a>
+        </table>
+    </div>
+</div>
+            {% endfor %}
+            {% endif %}
+
+{% if not session.name %}
+
+    {% for apps in app %}
+        <div class="container px-6 py-10 mx-auto text-center" style="background: #B9E0FF;  border-style: solid;
+  border-width: 1px;">
+            <h2 class="text-xl font-bold mb-4">Coin</h2>
+            <table class="table-auto w-full">
+                <thead>
+                <tr>
+                    <th class="px-4 py-2">Coin Name</th>
+                    <th class="px-4 py-2">Coin Symbol</th>
+                    <th class="px-4 py-2">Coin Price</th>
+                    <th class="px-4 py-2">Change percent 24h</th>
+                </tr>
+                </thead>
+
+                <tr>
+                    <td class="border px-4 py-2">{{ apps.getName }}</td>
+                    <td class="border px-4 py-2">{{ apps.getSymbol }}</td>
+                    <td class="border px-4 py-2">{{ apps.getPrice | number_format(2) }}$</td>
+                    <td class="border px-4 py-2">{{ apps.getPercentChange24h | number_format(2) }}%</td>
+
+
+                </tr>
+
+            </table>
+        </div>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+
+    </div>
+
+
+
